@@ -1,0 +1,61 @@
+@use "../variables" as *;
+
+$cols: 8;
+$colWidth: 8rem;
+$gridGap: 1rem;
+
+.deck {
+  display: grid;
+  grid-gap: $gridGap;
+  grid-template-columns: repeat(auto-fit, minmax(#{$colWidth}, 1fr));
+  max-width: calc(#{$cols} * (#{$colWidth} + #{$gridGap}));
+
+  margin: 0 auto;
+  justify-items: center;
+  align-items: center;
+
+  // Testing
+  // background: pink;
+}
+
+
+.deck .card {
+  border: 1px solid #aaa;
+  background: prop-value(card-bg);
+  width: $colWidth;
+  height: $colWidth * 1.5;
+  position: relative;
+
+  border-radius: 4px;
+  padding: 8px;
+
+  display: flex;
+
+  &__face {
+    display: inline-flex;
+    flex-direction: column;
+
+    line-height: 1;
+    font-size: 1.5rem;
+
+    &--center {
+      font-size: 3rem;
+      width: 100%;
+      align-self: center;
+      text-align: center;
+    }
+  }
+
+  &__num {
+    color: rgba(prop-value(text-color), 0.76);
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    font-size: 0.75rem;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  &--red { color: prop-value(card-red); }
+  &--black { color: prop-value(card-black); }
+}

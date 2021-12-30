@@ -1,0 +1,19 @@
+@use "./variables" as *;
+@use './common';
+
+* { box-sizing: border-box }
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 2rem;
+  height: 100%;
+
+  color: prop-value(text-color);
+  background: prop-value(bg);
+}

@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use 'sass:color';
+
+$theme-properties: (
+  text-color: #222,
+  bg: #f6f8f7,
+
+  // card
+  card-red: #c8191c,
+  card-black: #3c3233,
+  card-bg: #fff
+);
+
+
+
+// Check if map include specified key
+@function is-map-prop($map, $value) {
+  @return map.has-key($map, $value);
+};
+
+// Get custom property
+@function prop-value($name) {
+  @if is-map-prop($theme-properties, $name) {
+    @return map-get($theme-properties, $name);
+  }
+
+  @error "Invalid property name: '#{$style}' is not defined.";
+};
+
+// Mix theme colors and/or colors
+@function color-mix($color1, $color2, $weight: 50%) {
+  $color1: if(prop-value($color1), prop-value($color1), $color1);
+  $color2: if(prop-value($color2), prop-value($color2), $color2);
+
+  @return color.mix($color1, $color2, $weight);
+}

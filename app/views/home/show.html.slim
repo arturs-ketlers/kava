@@ -1,0 +1,20 @@
+.deck
+  - num = 0
+  - %w[2 3 4 5 6 7 8 9 10 J Q K A].each do |rank|
+    - %w[♠ ♦ ♣ ♥].each_with_index do |suit, idx|
+      - num += 1
+      - color = (idx + 1).odd? ? 'black' : 'red'
+
+      .card class="card--#{color}"
+        .card__face
+          span = rank
+          span = suit
+        .card__num = num
+
+  - ['★', '★', '', ''].each_with_index do |rank, idx|
+    - color = (idx + 1).odd? ? 'black' : 'red'
+    - num += 1
+    .card class="card--#{color}"
+      .card__face.card__face--center
+        span = rank
+      .card__num = num
